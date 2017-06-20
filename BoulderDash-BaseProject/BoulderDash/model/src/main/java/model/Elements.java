@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Elements {
+import model.dao.AbstractDAO;
+
+public abstract class Elements extends AbstractDAO{
 	private int PositionX;
 	private int PositionY;
 	
