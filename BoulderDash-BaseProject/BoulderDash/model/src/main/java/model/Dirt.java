@@ -1,24 +1,24 @@
 package model;
 
+public class Dirt extends Elements{
 
-public abstract class Elements extends Image {
-	public int PositionX;
-	public int PositionY;
-	
-	public void getSprite(){
+	@Override
+public void getSprite(){
 		
 	}
+	@Override
 	public int getPositionX() {
 		return PositionX;
 	}
 	public void setPositionX(int positionX) {
 		PositionX = positionX;
 	}
+	@Override
 	public int getPositionY() {
 		return PositionY;
 	}
 	public void setPositionY(int positionY) {
 		PositionY = positionY;
 	}
-
+	
 }
