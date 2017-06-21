@@ -2,6 +2,9 @@ package main;
 
 import java.sql.SQLException;
 
+import javax.swing.*;
+
+
 import controller.ControllerFacade;
 import model.ModelFacade;
 import view.ViewFacade;
@@ -12,8 +15,9 @@ import view.ViewFacade;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public abstract class Main {
+public class Main {
 
+	
     /**
      * The main method.
      *
@@ -21,6 +25,15 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
+   
+    		new Main();
+    		
+    
+    		
+    		
+
+    
+
         final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
 
         try {
@@ -30,4 +43,22 @@ public abstract class Main {
         }
     }
 
+
+
+public Main(){
+	JFrame fenetre = new  JFrame("Jeu");
+	//*fenetre.add(new Panneau());
+	fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	fenetre.setSize(1088, 864);
+	fenetre.setLocationRelativeTo(null);
+	fenetre.setResizable(false);
+	fenetre.setVisible(true);
+	
+	}
 }
+
+
+
+
+
+
