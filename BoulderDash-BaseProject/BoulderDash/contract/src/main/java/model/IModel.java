@@ -41,4 +41,38 @@ public interface IModel {
      *             the SQL exception
      */
     List<Example> getAllExamples() throws SQLException;
+    
+    public default void ToDie(){
+    	
+    }
+public default void LoseLifePoints(){
+    	
+    }
+public default void DropDiamonds(){
+	
+}
+public default void ToPush(){
+	
+}
+public default void Take(){
+	
+}
+public default void MoveCharacter(){
+	
+}
+public default void Gravity(){
+	
+}
+public default void MoveButterfly(){
+	
+}
+public default void MoveScorpio(){
+	
+}
+public default void Changer(){
+	
+}
+public default void Impenetrable(){
+	
+}
 }
