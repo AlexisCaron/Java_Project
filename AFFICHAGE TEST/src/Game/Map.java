@@ -14,6 +14,7 @@ public class Map {
 				  mur,
 				  diamant,
 				  dirt,
+				  
 				  bolder;
 	
 	public Map(){

@@ -1,8 +1,6 @@
 package Game;
 import java.awt.*;
-
 import java.awt.event.*;
-import java.util.Arrays;
 
 import javax.swing.*;
 
@@ -13,8 +11,11 @@ public class Panneau extends JPanel implements ActionListener{
 	
 	private Map m;
 	private Player p;
-
 	
+	int previousCaseX;
+	int previousCaseY;
+
+
 	
 	public Panneau(){
 			
@@ -27,11 +28,8 @@ public class Panneau extends JPanel implements ActionListener{
 			timer.start();
 		}
 	
-
-	
-		
 		public void actionPerformed(ActionEvent e){
-			repaint();
+			
 		}
 		
 		public void paint(Graphics g){
@@ -55,70 +53,77 @@ public class Panneau extends JPanel implements ActionListener{
 					if(m.getMap(x, y).equals("T")){
 						g.drawImage(m.getDirt(), x * 32, y * 32,32,32, null);
 					}
-
-					int sableX[] = {17,17};
-					int sableY[] = {18,22};
-					for (int i=0; i<2; i++){                                           //NE MARCHERA PAS CAR SEULEMENT POUR UNE MAP
-
-						if(sableX[i] != p.getTileX() || sableY[i] != p.getTileY() ) {
-							
-							//System.out.println("dirt");
-							g.drawImage(m.getDirt(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
-						}
-				}
+				
 				}
 				
 				
 			}
-			
-			
+			if(Player.getMove() == 1){
+				
+				previousCaseX = p.getTileX();
+				previousCaseY = p.getTileY();
+				
+				System.out.println(previousCaseX);
+				System.out.println(previousCaseY);
 				
 				
-			
-			
-			
-			
+				g.drawImage(m.getDirt(), previousCaseX * 32, previousCaseY * 32,32,32, null);
+				
+				Player.setMove(0);
+
+		}
 
 			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
-			System.out.println(p.getTileX());
+			//System.out.println(p.getTileX());
 		}
 		
 		public class Al extends KeyAdapter{
 			public void keyPressed(KeyEvent e){
 				int keycode = e.getKeyCode();
+				//super.paint(g);
+				repaint();
 				
-				if(keycode == KeyEvent.VK_Z){
+				if(keycode == KeyEvent.VK_UP){
 					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C")){
-					p.move(0, -1);
+						p.move(0, -1);
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=1;
 					}
 				}
-				if(keycode == KeyEvent.VK_S){
+				else if(keycode == KeyEvent.VK_DOWN){
 					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C")){
-					p.move(0, 1);
-					
+						p.move(0, 1);
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=2;
 					}
 				}
-				if(keycode == KeyEvent.VK_Q){
+				else if(keycode == KeyEvent.VK_LEFT){
 					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C")){
-					p.move(-1, 0);
+						p.move(-1, 0);
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=3;
 					}
 				}
-				if(keycode == KeyEvent.VK_D){
+				else if(keycode == KeyEvent.VK_RIGHT){
 					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C")){
-					p.move(1, 0);
+						p.move(1, 0);
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=4;
+						//g.drawImage(m.getDirt(), x * 32, y * 32,32,32, null);
 					}
-				}	}
+				}
 
-					
-				
-				
-			
-			
-			
+			}
+			/*public void KeyReleased(KeyEvent e){
+				p.p=0;
+				System.out.println("cela marche");
+			}*/
+	
 		}
-		
-		
-		
-		}
+}
 

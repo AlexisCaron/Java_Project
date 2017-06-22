@@ -6,15 +6,41 @@ import javax.swing.ImageIcon;
 
 public class Player {
 	
+	private static int Move;
+
+	public static int getMove() {
+		return Move;
+	}
+
+	public static void setMove(int move) {
+		Move = move;
+	}
+
+	
+	public int p = 0;
 	private int tileX, tileY;
 	
-	private Image player; 
+	private Image player,playerup, playerdown, playerleft, playerright; 
 	
 	public Player(){
+	
+	
+			ImageIcon img = new ImageIcon("D://Antho//CDM.png");
+			player = img.getImage();
+
+			img = new ImageIcon("D://Antho//playerup.png");
+			playerup = img.getImage();
+
+			img = new ImageIcon("D://Antho//playerdown.png");
+			playerdown = img.getImage();
+
+			img = new ImageIcon("D://Antho//playerleft.png");
+			playerleft = img.getImage();
+
+			img = new ImageIcon("D://Antho//playerright.png");
+			playerright = img.getImage();
 		
 		
-		ImageIcon img = new ImageIcon("D://Antho//CDM.png");
-		player = img.getImage();
 		
 		
 	
@@ -25,9 +51,20 @@ public class Player {
 	}
 	
 	public Image getPlayer(){
-		return player;
 		
+		if(p==1){
+			return playerup;
+		}else if(p==2){
+			return playerdown;
+		}else if(p==3){
+			return playerleft;
+		}else if(p==4){
+			return playerright;
+		}else{
+		return player;
+		}
 	}
+	
 
 	public int getTileX(){
 		return tileX;
@@ -44,6 +81,7 @@ public class Player {
 		
 		tileX += dx;
 		tileY += dy;
-		
+		setMove(1);
+
 	}
 }
