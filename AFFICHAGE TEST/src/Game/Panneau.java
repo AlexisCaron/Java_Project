@@ -2,15 +2,12 @@ package Game;
 import java.awt.*;
 
 import java.awt.event.*;
-import java.util.Arrays;
-
 import javax.swing.*;
 
 
 
 public class Panneau extends JPanel implements ActionListener{
 	private Timer timer;
-	
 	private Map m;
 	private Player p;
 	
@@ -28,11 +25,9 @@ public class Panneau extends JPanel implements ActionListener{
 		addKeyListener(new Al());
 		setFocusable(true);
 		
-			timer = new Timer(25, this);
+			timer = new Timer(1, this);
 			timer.start();
 		}
-	
-
 	
 	 public void actionPerformed(ActionEvent e){
 		repaint();
@@ -41,7 +36,6 @@ public class Panneau extends JPanel implements ActionListener{
 		
 		public void paint(Graphics g){
 			super.paint(g);
-			
 			
 			for(int x = 0; x < 30; x++){		
 				for(int y = 0; y < 30; y++){
@@ -61,12 +55,9 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 					if(m.getMap(x, y).equals("T")){
 						g.drawImage(m.getDirt(), x * 32, y * 32,32,32, null);
-						
 					}
-				
 					
-				
-					}
+			}
 
 					if(Player.getMove() == 1){
 						
@@ -75,16 +66,15 @@ public class Panneau extends JPanel implements ActionListener{
 						
 						Map.setMap(previousCaseX,previousCaseY,"T");
 						
+						
 						Player.setMove(0);
-
-				}
-				
-			
+						
+						}
 			}
 			
-			
-
-			g.drawString(diamondMessage, 29, 29);
+			//g.setFont(new Font("Calibri", Font.BOLD, 25));
+			//g.setColor(Color.BLACK);;
+			//g.drawString(diamondMessage, 0, 980);
 			
 			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
@@ -128,17 +118,8 @@ public class Panneau extends JPanel implements ActionListener{
 						p.p=4;
 
 					}
-				}	}
-
-					
-				
-				
-			
-			
-			
+				}	
+			}	
 		}
-		
-		
-		
-		}
+	}
 

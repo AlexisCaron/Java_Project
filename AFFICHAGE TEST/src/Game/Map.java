@@ -1,12 +1,12 @@
 package Game;
 import java.awt.*;
-import java.io.File;
+import java.io.*;
 import java.util.*;
 
 import javax.swing.ImageIcon;
 
 public class Map {
-	
+	private static Player p;
 	private Scanner m;
 	private String Map[] = new String[30];
 	
@@ -20,17 +20,17 @@ public class Map {
 	
 	public Map(){
 		
-		ImageIcon img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Sand.png");
+		ImageIcon img = new ImageIcon("D://Antho//Sand.png");
 		terre = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Wall.png");
+		img = new ImageIcon("D://Antho//Wall.png");
 		mur = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Diamond.png");
+		img = new ImageIcon("D://Antho//Diamond.png");
 		diamant = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Stone.png");
+		img = new ImageIcon("D://Antho//Stone.png");
 		bolder = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Dirt.png");
+		img = new ImageIcon("D://Antho//Dirt.png");
 		dirt = img.getImage();
-		
+		p = new Player();
 		
 		openFile();
 		readFile();
@@ -63,14 +63,20 @@ public class Map {
 		return index;
 	}
 	
-	public static void setMap(int x, int y, String s) {
-		table[x][y] = s; 
-	}
+	
+		
+		//System.out.println(table[x][y]);
+	
+
+		
+		//System.out.println(table[5][3]);
+	
+	
 
 	public void openFile(){
 		
 		try{
-		m = new Scanner(new File("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//mapd.txt"));
+		m = new Scanner(new File("D://Antho//mapd.txt"));
 		}catch(Exception e){
 			System.out.println("error loading map");
 		}
@@ -83,7 +89,8 @@ public class Map {
 			}}
 				for(int x = 0; x < 30; x++){		
 					for(int y = 0; y < 30; y++){						
-					table[x][y] = Map[y].substring(x, x+1);}}
+					table[x][y] = Map[y].substring(x,x+1);}}
+					
 			}
 			
 		

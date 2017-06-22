@@ -1,8 +1,7 @@
 package Game;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
+import java.awt.*;
+import javax.swing.*;
 
 public class Player {
 	
@@ -16,29 +15,31 @@ public class Player {
 		Move = move;
 	}
 
+	//on définit
 	public int p = 0;
 	
+	//on définit
 	private Image player,playerup, playerdown, playerleft, playerright; 
 
-
+	//on définit
 	private int tileX, tileY;
 	
 	public Player(){
 		
-		
-		ImageIcon img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Character.png");
+		// image à aller chercher dans le code source
+		ImageIcon img = new ImageIcon("D://Antho//CDM.png");
 		player = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerup.png");
+		img = new ImageIcon("D://Antho//playerup.png");
 		playerup = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerdown.png");
+		img = new ImageIcon("D://Antho//playerdown.png");
 		playerdown = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerleft.png");
+		img = new ImageIcon("D://Antho//playerleft.png");
 		playerleft = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerright.png");
+		img = new ImageIcon("D://Antho//playerright.png");
 		playerright = img.getImage();
 	
 		
@@ -50,6 +51,8 @@ public class Player {
 		
 	}
 	
+	//permet de savoir quelle image utiliser quand l'utilisateur
+	//appuie sur une touche
 	public Image getPlayer(){
 		
 		if(p==1){
@@ -65,10 +68,11 @@ public class Player {
 		}
 	}
 	
-
+	//retourner la position
 	public int getTileX(){
 		return tileX;
 	}
+	//retourner la position
 	public int getTileY(){
 		return tileY;
 	}
