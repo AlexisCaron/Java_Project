@@ -28,16 +28,16 @@ public class Player {
 			ImageIcon img = new ImageIcon("D://Antho//CDM.png");
 			player = img.getImage();
 
-			img = new ImageIcon("D://Antho//playerup.png");
+			img = new ImageIcon("D://Antho//up.gif");
 			playerup = img.getImage();
 
-			img = new ImageIcon("D://Antho//playerdown.png");
+			img = new ImageIcon("D://Antho//down.gif");
 			playerdown = img.getImage();
 
 			img = new ImageIcon("D://Antho//playerleft.png");
 			playerleft = img.getImage();
 
-			img = new ImageIcon("D://Antho//playerright.png");
+			img = new ImageIcon("D://Antho//turnr.gif");
 			playerright = img.getImage();
 		
 		
