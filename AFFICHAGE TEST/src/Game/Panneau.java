@@ -84,10 +84,12 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 					if(m.getMap(x, y).equals("D")){
 						g.drawImage(m.getDiam(), x * 32, y * 32,32,32, null);
-						
+					
 					}
 					if(m.getMap(x, y).equals("R")){
 						g.drawImage(m.getBol(), x * 32, y * 32,32,32, null);
+						
+						
 					}
 					if(m.getMap(x, y).equals("T")){
 						g.drawImage(m.getDirt(), x * 32, y * 32,32,32, null);
@@ -141,15 +143,9 @@ public class Panneau extends JPanel implements ActionListener{
 				if(keycode == KeyEvent.VK_UP){
 					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R") && endGame != 0){
 						
-						nextCaseX = (p.getTileX());
-						nextCaseY = (p.getTileY() - 1);
 						
-						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+						if(m.getMap((p.getTileX()), (p.getTileY() - 1)).equals("D")) {
 							diamondTaked ++;
-						}
-						
-						if(m.getMap(nextCaseX, nextCaseY).equals("R")) {
-							
 						}
 						
 						
@@ -162,11 +158,10 @@ public class Panneau extends JPanel implements ActionListener{
 				else if(keycode == KeyEvent.VK_DOWN){
 					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R") && endGame != 0){
 						
-						nextCaseX = (p.getTileX());
-						nextCaseY = (p.getTileY() + 1);
+
 						
 						
-						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+						if(m.getMap((p.getTileX()), (p.getTileY() + 1)).equals("D")) {
 							diamondTaked ++;
 						}
 						
@@ -177,35 +172,54 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				else if(keycode == KeyEvent.VK_LEFT){
-					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() - 1, p.getTileY()).equals("R") && endGame != 0){
+					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && endGame != 0){
 						
-						nextCaseX = (p.getTileX() - 1);
+						nextCaseX = (p.getTileX() - 2);
 						nextCaseY = (p.getTileY());
 						
-						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+						if(m.getMap((p.getTileX() - 1), (p.getTileY())).equals("D")) {
 							diamondTaked ++;
 						}
 						
+						if(m.getMap((p.getTileX() - 1), (p.getTileY())).equals("R")) {
+							if(m.getMap(nextCaseX, nextCaseY).equals("T")) {
+							
+								Map.setMap((p.getTileX() - 1), (p.getTileY()), "T");
+								Map.setMap((p.getTileX() - 2), (p.getTileY()), "R");
+						}
+										
+						}
+						if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("R")){
 						p.move(-1, 0);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
 						p.p=3;
+						}
 					}
 				}
 				else if(keycode == KeyEvent.VK_RIGHT){
-					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() + 1, p.getTileY()).equals("R") && endGame != 0){
+					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && endGame != 0){
 						
-						nextCaseX = (p.getTileX() + 1);
+						nextCaseX = (p.getTileX() + 2);
 						nextCaseY = (p.getTileY());
 						
-						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+						if(m.getMap((p.getTileX() + 1), (p.getTileY())).equals("D")) {
 							diamondTaked ++;
 						}
 						
+						if(m.getMap((p.getTileX() + 1), (p.getTileY())).equals("R")) {
+							if(m.getMap(nextCaseX, nextCaseY).equals("T")) {
+							
+								Map.setMap((p.getTileX() + 1), (p.getTileY()), "T");
+								Map.setMap((p.getTileX() + 2), (p.getTileY()), "R");
+						}}
+						
+						if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("R")){
 						p.move(1, 0);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
 						p.p=4;
+						}
 
 					}
 				}	}
