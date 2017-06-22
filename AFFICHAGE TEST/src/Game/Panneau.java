@@ -13,8 +13,13 @@ public class Panneau extends JPanel implements ActionListener{
 	
 	private Map m;
 	private Player p;
-
 	
+	int diamondRemaining = 0;
+	String diamondMessage = "Diamonds Remaining :";
+	
+	
+	int previousCaseX;
+	int previousCaseY;
 	
 	public Panneau(){
 			
@@ -29,17 +34,18 @@ public class Panneau extends JPanel implements ActionListener{
 	
 
 	
-		
-		public void actionPerformed(ActionEvent e){
-			repaint();
-		}
+	 public void actionPerformed(ActionEvent e){
+		repaint();
+	}
+
 		
 		public void paint(Graphics g){
 			super.paint(g);
 			
 			
-			for(int y = 0; y < 30; y++){
-				for(int x = 0; x < 30; x++){
+			for(int x = 0; x < 30; x++){		
+				for(int y = 0; y < 30; y++){
+					
 					if(m.getMap(x, y).equals("S")){
 						g.drawImage(m.getTerre(), x * 32, y * 32,32,32, null);
 					}
@@ -48,65 +54,93 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 					if(m.getMap(x, y).equals("D")){
 						g.drawImage(m.getDiam(), x * 32, y * 32,32,32, null);
+						diamondRemaining ++;
+						System.out.print(diamondRemaining);
 					}
 					if(m.getMap(x, y).equals("R")){
 						g.drawImage(m.getBol(), x * 32, y * 32,32,32, null);
 					}
 					if(m.getMap(x, y).equals("T")){
 						g.drawImage(m.getDirt(), x * 32, y * 32,32,32, null);
+						
+					}
+				
+					
+				
 					}
 
-					int sableX[] = {17,17};
-					int sableY[] = {18,22};
-					for (int i=0; i<2; i++){                                           //NE MARCHERA PAS CAR SEULEMENT POUR UNE MAP
+					if(Player.getMove() == 1){
+						
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						
+						System.out.print(previousCaseX);
+						System.out.print(previousCaseY);
+						
+						
+						g.drawImage(m.getDirt(), previousCaseX * 32, previousCaseY * 32,32,32, null);
+						
+						Player.setMove(0);
 
-						if(sableX[i] != p.getTileX() || sableY[i] != p.getTileY() ) {
-							
-							//System.out.println("dirt");
-							g.drawImage(m.getDirt(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
-						}
-				}
 				}
 				
-				
+			
 			}
 			
 			
-				
-				
-			
-			
-			
-			
 
 			
+			
+			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
-			System.out.println(p.getTileX());
+			
+			g.drawImage(m.getDirt(), previousCaseX * 32, previousCaseY * 32,32,32, null);
+
 		}
 		
 		public class Al extends KeyAdapter{
+			
 			public void keyPressed(KeyEvent e){
 				int keycode = e.getKeyCode();
 				
-				if(keycode == KeyEvent.VK_Z){
+			/*	repaint();     */
+				if(keycode == KeyEvent.VK_UP){
 					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C")){
 					p.move(0, -1);
-					}
-				}
-				if(keycode == KeyEvent.VK_S){
-					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C")){
-					p.move(0, 1);
+					
+					previousCaseX = p.getTileX();
+					previousCaseY = p.getTileY();
+					
+										
 					
 					}
 				}
-				if(keycode == KeyEvent.VK_Q){
-					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C")){
-					p.move(-1, 0);
+				if(keycode == KeyEvent.VK_DOWN){
+					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C")){
+						p.move(0, 1);
+					
+					
+					previousCaseX = p.getTileX();
+					previousCaseY = p.getTileY();
+					
 					}
 				}
-				if(keycode == KeyEvent.VK_D){
+				if(keycode == KeyEvent.VK_LEFT){
+					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C")){
+					p.move(-1, 0);
+					
+					previousCaseX = p.getTileX();
+					previousCaseY = p.getTileY();
+
+					}
+				}
+				if(keycode == KeyEvent.VK_RIGHT){
 					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C")){
 					p.move(1, 0);
+					
+					previousCaseX = p.getTileX();
+					previousCaseY = p.getTileY();
+
 					}
 				}	}
 

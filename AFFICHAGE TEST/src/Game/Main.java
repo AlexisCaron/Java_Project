@@ -19,7 +19,6 @@ public class Main {
 		fenetre.setResizable(false);
 		fenetre.setVisible(true);
 		
-		
 	}
 
 }

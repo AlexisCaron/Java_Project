@@ -6,6 +6,19 @@ import javax.swing.ImageIcon;
 
 public class Player {
 	
+	private static int Move;
+
+	public static int getMove() {
+		return Move;
+	}
+
+	public static void setMove(int move) {
+		Move = move;
+	}
+
+
+
+
 	private int tileX, tileY;
 	
 	private Image player; 
@@ -13,7 +26,7 @@ public class Player {
 	public Player(){
 		
 		
-		ImageIcon img = new ImageIcon("D://Antho//CDM.png");
+		ImageIcon img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Character.png");
 		player = img.getImage();
 		
 		
@@ -40,10 +53,11 @@ public class Player {
 	
 	
 	public void move(int dx, int dy){
-	
+
 		
 		tileX += dx;
 		tileY += dy;
+		setMove(1);
 		
 	}
 }
