@@ -18,6 +18,7 @@ public class Panneau extends JPanel implements ActionListener{
 	static int diamondTaked = 0;
 	static int diamondCount;
 	static int endGame = 1;
+	static int die = 1;
 	
 	public static int getDiamondTaked() {
 		return diamondTaked;
@@ -43,6 +44,7 @@ public class Panneau extends JPanel implements ActionListener{
 
 	String diamondMessage = "Diamonds Remaining :";
 	String winMessage = "You have collected all the diamonds!";
+	String looseMessage = "You are dead...";
 	String diamondString;
 	
 	int previousCaseX;
@@ -65,7 +67,7 @@ public class Panneau extends JPanel implements ActionListener{
 
 	
 	 public void actionPerformed(ActionEvent e){
-		repaint();
+		
 	}
 
 		
@@ -84,12 +86,17 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 					if(m.getMap(x, y).equals("D")){
 						g.drawImage(m.getDiam(), x * 32, y * 32,32,32, null);
-					
+						if(m.getMap(x, y+1).equals("T")){
+							Map.setMap(x, y+1, "D");
+							Map.setMap(x, y, "T");}
 					}
 					if(m.getMap(x, y).equals("R")){
 						g.drawImage(m.getBol(), x * 32, y * 32,32,32, null);
 						
-						
+						if(m.getMap(x, y+1).equals("T")){
+							Map.setMap(x, y+1, "R");
+							Map.setMap(x, y, "T");
+						}
 					}
 					if(m.getMap(x, y).equals("T")){
 						g.drawImage(m.getDirt(), x * 32, y * 32,32,32, null);
@@ -143,6 +150,7 @@ public class Panneau extends JPanel implements ActionListener{
 				if(keycode == KeyEvent.VK_UP){
 					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R") && endGame != 0){
 						
+						repaint();
 						
 						if(m.getMap((p.getTileX()), (p.getTileY() - 1)).equals("D")) {
 							diamondTaked ++;
@@ -158,7 +166,7 @@ public class Panneau extends JPanel implements ActionListener{
 				else if(keycode == KeyEvent.VK_DOWN){
 					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R") && endGame != 0){
 						
-
+						repaint();
 						
 						
 						if(m.getMap((p.getTileX()), (p.getTileY() + 1)).equals("D")) {
@@ -176,6 +184,8 @@ public class Panneau extends JPanel implements ActionListener{
 						
 						nextCaseX = (p.getTileX() - 2);
 						nextCaseY = (p.getTileY());
+						
+						repaint();
 						
 						if(m.getMap((p.getTileX() - 1), (p.getTileY())).equals("D")) {
 							diamondTaked ++;
@@ -202,6 +212,8 @@ public class Panneau extends JPanel implements ActionListener{
 						
 						nextCaseX = (p.getTileX() + 2);
 						nextCaseY = (p.getTileY());
+						
+						repaint();
 						
 						if(m.getMap((p.getTileX() + 1), (p.getTileY())).equals("D")) {
 							diamondTaked ++;

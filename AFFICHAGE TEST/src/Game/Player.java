@@ -77,7 +77,6 @@ public class Player {
 	
 	
 	public void move(int dx, int dy){
-
 		
 		tileX += dx;
 		tileY += dy;
