@@ -60,11 +60,14 @@ public class Panneau extends JPanel implements ActionListener{
 			}
 			if(Player.getMove() == 1){
 				
+				
 				previousCaseX = p.getTileX();
 				previousCaseY = p.getTileY();
 				
 				System.out.println(previousCaseX);
 				System.out.println(previousCaseY);
+				
+				System.out.println(g.drawImage(m.getDirt(), previousCaseX * 32, previousCaseY * 32,32,32, null));
 				
 				
 				g.drawImage(m.getDirt(), previousCaseX * 32, previousCaseY * 32,32,32, null);
