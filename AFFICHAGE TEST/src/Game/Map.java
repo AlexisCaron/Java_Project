@@ -59,7 +59,7 @@ public class Map {
 	}
 	
 	public String getMap(int x, int y){
-		String index = table[x][y];          //----------------------------------------------------------------------------------
+		String index = table[x][y];  
 		return index;
 	}
 	

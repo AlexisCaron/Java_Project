@@ -14,7 +14,7 @@ public class Panneau extends JPanel implements ActionListener{
 	private Map m;
 	private Player p;
 	
-	int diamondRemaining = 0;
+	int diamondRemaining = 8;
 	String diamondMessage = "Diamonds Remaining :";
 	
 	
@@ -55,7 +55,6 @@ public class Panneau extends JPanel implements ActionListener{
 					if(m.getMap(x, y).equals("D")){
 						g.drawImage(m.getDiam(), x * 32, y * 32,32,32, null);
 						diamondRemaining ++;
-						System.out.print(diamondRemaining);
 					}
 					if(m.getMap(x, y).equals("R")){
 						g.drawImage(m.getBol(), x * 32, y * 32,32,32, null);
@@ -74,9 +73,6 @@ public class Panneau extends JPanel implements ActionListener{
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
 						
-						System.out.print(previousCaseX);
-						System.out.print(previousCaseY);
-						
 						Map.setMap(previousCaseX,previousCaseY,"T");
 						
 						Player.setMove(0);
@@ -88,7 +84,7 @@ public class Panneau extends JPanel implements ActionListener{
 			
 			
 
-			
+			g.drawString(diamondMessage, 29, 29);
 			
 			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
@@ -97,46 +93,39 @@ public class Panneau extends JPanel implements ActionListener{
 		}
 		
 		public class Al extends KeyAdapter{
-			
 			public void keyPressed(KeyEvent e){
 				int keycode = e.getKeyCode();
 				
-			/*	repaint();     */
 				if(keycode == KeyEvent.VK_UP){
 					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R")){
-					p.move(0, -1);
-					previousCaseX = p.getTileX();
-					previousCaseY = p.getTileY();
-					
-										
-					
+						p.move(0, -1);
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=1;
 					}
 				}
-				if(keycode == KeyEvent.VK_DOWN){
+				else if(keycode == KeyEvent.VK_DOWN){
 					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R")){
 						p.move(0, 1);
-					
-					
-					previousCaseX = p.getTileX();
-					previousCaseY = p.getTileY();
-					
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=2;
 					}
 				}
-				if(keycode == KeyEvent.VK_LEFT){
-					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() - 1 , p.getTileY()).equals("R")){
-					p.move(-1, 0);
-					
-					previousCaseX = p.getTileX();
-					previousCaseY = p.getTileY();
-
+				else if(keycode == KeyEvent.VK_LEFT){
+					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() - 1, p.getTileY()).equals("R")){
+						p.move(-1, 0);
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=3;
 					}
 				}
-				if(keycode == KeyEvent.VK_RIGHT){
-					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() + 1 , p.getTileY()).equals("R")){
-					p.move(1, 0);
-					
-					previousCaseX = p.getTileX();
-					previousCaseY = p.getTileY();
+				else if(keycode == KeyEvent.VK_RIGHT){
+					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() + 1, p.getTileY()).equals("R")){
+						p.move(1, 0);
+						previousCaseX = p.getTileX();
+						previousCaseY = p.getTileY();
+						p.p=4;
 
 					}
 				}	}
