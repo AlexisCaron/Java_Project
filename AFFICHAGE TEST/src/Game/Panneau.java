@@ -14,12 +14,41 @@ public class Panneau extends JPanel implements ActionListener{
 	private Map m;
 	private Player p;
 	
-	int diamondRemaining = 8;
+	static int diamondRemaining = 7;
+	static int diamondTaked = 0;
+	static int diamondCount;
+	
+	public static int getDiamondTaked() {
+		return diamondTaked;
+	}
+
+
+
+	public static void setDiamondTaked(int diamondTaked) {
+		Panneau.diamondTaked = diamondTaked;
+	}
+
+
+
+	public static int getDiamondRemaining() {
+		return diamondRemaining;
+	}
+
+
+
+	public static void setDiamondRemaining(int diamondRemaining) {
+		Panneau.diamondRemaining = diamondRemaining;
+	}
+
 	String diamondMessage = "Diamonds Remaining :";
 	
+	String diamondString;
 	
 	int previousCaseX;
 	int previousCaseY;
+	
+	int nextCaseX;
+	int nextCaseY;
 	
 	public Panneau(){
 			
@@ -28,7 +57,7 @@ public class Panneau extends JPanel implements ActionListener{
 		addKeyListener(new Al());
 		setFocusable(true);
 		
-			timer = new Timer(25, this);
+			timer = new Timer(15, this);
 			timer.start();
 		}
 	
@@ -54,7 +83,7 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 					if(m.getMap(x, y).equals("D")){
 						g.drawImage(m.getDiam(), x * 32, y * 32,32,32, null);
-						diamondRemaining ++;
+						
 					}
 					if(m.getMap(x, y).equals("R")){
 						g.drawImage(m.getBol(), x * 32, y * 32,32,32, null);
@@ -81,10 +110,15 @@ public class Panneau extends JPanel implements ActionListener{
 				
 			
 			}
+			g.setFont(new Font("Calibri", Font.BOLD, 25));
+			g.setColor(Color.BLACK);
+			g.drawString(diamondMessage, 0,  980);
 			
+			diamondCount = diamondRemaining - diamondTaked;
 			
-
-			g.drawString(diamondMessage, 29, 29);
+			diamondString = String.valueOf(diamondCount);
+			
+			g.drawString(diamondString, 235, 980);
 			
 			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
@@ -98,6 +132,14 @@ public class Panneau extends JPanel implements ActionListener{
 				
 				if(keycode == KeyEvent.VK_UP){
 					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R")){
+						
+						nextCaseX = (p.getTileX());
+						nextCaseY = (p.getTileY() - 1);
+						
+						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+							diamondTaked ++;
+						}
+						
 						p.move(0, -1);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
@@ -106,6 +148,15 @@ public class Panneau extends JPanel implements ActionListener{
 				}
 				else if(keycode == KeyEvent.VK_DOWN){
 					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R")){
+						
+						nextCaseX = (p.getTileX());
+						nextCaseY = (p.getTileY() + 1);
+						
+						
+						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+							diamondTaked ++;
+						}
+						
 						p.move(0, 1);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
@@ -114,6 +165,14 @@ public class Panneau extends JPanel implements ActionListener{
 				}
 				else if(keycode == KeyEvent.VK_LEFT){
 					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() - 1, p.getTileY()).equals("R")){
+						
+						nextCaseX = (p.getTileX() - 1);
+						nextCaseY = (p.getTileY());
+						
+						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+							diamondTaked ++;
+						}
+						
 						p.move(-1, 0);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
@@ -122,6 +181,14 @@ public class Panneau extends JPanel implements ActionListener{
 				}
 				else if(keycode == KeyEvent.VK_RIGHT){
 					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() + 1, p.getTileY()).equals("R")){
+						
+						nextCaseX = (p.getTileX() + 1);
+						nextCaseY = (p.getTileY());
+						
+						if(m.getMap(nextCaseX, nextCaseY).equals("D")) {
+							diamondTaked ++;
+						}
+						
 						p.move(1, 0);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();

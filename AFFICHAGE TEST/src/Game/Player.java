@@ -82,6 +82,5 @@ public class Player {
 		tileX += dx;
 		tileY += dy;
 		setMove(1);
-		
 	}
 }

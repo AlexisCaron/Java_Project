@@ -18,7 +18,6 @@ public class Main {
 		fenetre.setLocationRelativeTo(null);
 		fenetre.setResizable(false);
 		fenetre.setVisible(true);
-		
 	}
 
 }
