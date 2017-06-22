@@ -77,8 +77,7 @@ public class Panneau extends JPanel implements ActionListener{
 						System.out.print(previousCaseX);
 						System.out.print(previousCaseY);
 						
-						
-						g.drawImage(m.getDirt(), previousCaseX * 32, previousCaseY * 32,32,32, null);
+						Map.setMap(previousCaseX,previousCaseY,"T");
 						
 						Player.setMove(0);
 
@@ -93,8 +92,7 @@ public class Panneau extends JPanel implements ActionListener{
 			
 			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
-			
-			g.drawImage(m.getDirt(), previousCaseX * 32, previousCaseY * 32,32,32, null);
+		
 
 		}
 		
@@ -105,9 +103,8 @@ public class Panneau extends JPanel implements ActionListener{
 				
 			/*	repaint();     */
 				if(keycode == KeyEvent.VK_UP){
-					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C")){
+					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R")){
 					p.move(0, -1);
-					
 					previousCaseX = p.getTileX();
 					previousCaseY = p.getTileY();
 					
@@ -116,7 +113,7 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				if(keycode == KeyEvent.VK_DOWN){
-					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C")){
+					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R")){
 						p.move(0, 1);
 					
 					
@@ -126,7 +123,7 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				if(keycode == KeyEvent.VK_LEFT){
-					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C")){
+					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() - 1 , p.getTileY()).equals("R")){
 					p.move(-1, 0);
 					
 					previousCaseX = p.getTileX();
@@ -135,7 +132,7 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				if(keycode == KeyEvent.VK_RIGHT){
-					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C")){
+					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() + 1 , p.getTileY()).equals("R")){
 					p.move(1, 0);
 					
 					previousCaseX = p.getTileX();

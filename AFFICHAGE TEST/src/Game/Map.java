@@ -16,7 +16,7 @@ public class Map {
 				  dirt,
 				  bolder;
 	
-	String table[][] = new String [30][30];
+	static String table[][] = new String [30][30];
 	
 	public Map(){
 		
@@ -63,7 +63,7 @@ public class Map {
 		return index;
 	}
 	
-	public void setMap(int x, int y, String s) {
+	public static void setMap(int x, int y, String s) {
 		table[x][y] = s; 
 	}
 
