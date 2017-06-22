@@ -1,8 +1,12 @@
 package model;
-
+/**
+ * 
+ * @author dimitri,anthony,alexis,florian
+ *
+ */
 public interface KillSomeone {
-public default void Kill(){
-	
-
-}
+	/** 
+	 * Method 
+	 */
+public void Kill();
 }

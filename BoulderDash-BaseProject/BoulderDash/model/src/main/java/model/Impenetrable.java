@@ -1,9 +1,13 @@
 package model;
-
+/**
+ * 
+ * @author dimitri,anthony,alexis,florian
+ *
+ */
 public interface Impenetrable {
-	
-	public default void Blocked(){
-		
-	}
+	/**
+	 * Method Block
+	 */
+	public void Blocked();
 
 }

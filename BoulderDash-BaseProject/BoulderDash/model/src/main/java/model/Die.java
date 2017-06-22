@@ -1,8 +1,11 @@
 package model;
-
+/**
+ * 
+ * @author dimitri,anthony,alexis,florian
+ *
+ */
 public interface Die {
-	public default void ToDie(){
-		
-	}
+	
+	public void ToDie();
 
 }

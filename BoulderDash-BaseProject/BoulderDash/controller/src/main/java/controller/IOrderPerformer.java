@@ -1,8 +1,15 @@
 package controller;
+/** 
+ * 
+ * @author dimitri,anthony,alexis,florian
+ */
 
 public interface IOrderPerformer {
-	public default void OrderPerformer (UserOrder userOrder){
-		
-	}
+	/**
+	 * Method 
+	 * @param userOrder class 
+	 */
+	public default void OrderPerformer (UserOrder userOrder) {
+	}	
 
 }

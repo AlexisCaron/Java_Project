@@ -1,8 +1,13 @@
 package model;
-
+/**
+ * 
+ * @author dimitri,anthony,alexis,florian
+ *
+ */
 public interface Change {
-	public default void Changer(){
-	
-	}
+	/**
+	 * Method 
+	 */
+	public void Changer();
 
 }

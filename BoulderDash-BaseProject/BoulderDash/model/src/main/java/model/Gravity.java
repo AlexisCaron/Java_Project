@@ -1,8 +1,10 @@
 package model;
-
+/**
+ * 
+ * @author dimitri,anthony,alexis,florian
+ *
+ */
 public interface Gravity {
-	public default void Fall(){
-		
-	}
+	public void Fall();
 
 }

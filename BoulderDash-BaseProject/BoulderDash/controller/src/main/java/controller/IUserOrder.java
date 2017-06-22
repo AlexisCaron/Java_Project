@@ -1,9 +1,19 @@
 package controller;
-
+/** 
+ * 
+ * @author dimitri, antohny, alexis, florian
+ */
 public interface IUserOrder {
-	public default Order getOrder(){
-		return ;
-	}
-	
+	/**
+	 * Method
+	 * @return order
+	 */
+	Order getOrder();
+	/**
+	 * Method
+	 * @return player 
+	 */
+    int getPlayer();
 
 }
+
