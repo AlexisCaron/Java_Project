@@ -17,6 +17,7 @@ public class Panneau extends JPanel implements ActionListener{
 	static int diamondRemaining = 7;
 	static int diamondTaked = 0;
 	static int diamondCount;
+	static int endGame = 1;
 	
 	public static int getDiamondTaked() {
 		return diamondTaked;
@@ -41,7 +42,7 @@ public class Panneau extends JPanel implements ActionListener{
 	}
 
 	String diamondMessage = "Diamonds Remaining :";
-	
+	String winMessage = "You have collected all the diamonds!";
 	String diamondString;
 	
 	int previousCaseX;
@@ -120,6 +121,13 @@ public class Panneau extends JPanel implements ActionListener{
 			
 			g.drawString(diamondString, 235, 980);
 			
+			if(diamondCount == 0){
+				g.setFont(new Font("Calibri", Font.BOLD, 50));
+				g.setColor(Color.WHITE);
+				g.drawString(winMessage, 110,  450);
+				
+				endGame = 0;
+			}
 			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
 		
@@ -131,7 +139,7 @@ public class Panneau extends JPanel implements ActionListener{
 				int keycode = e.getKeyCode();
 				
 				if(keycode == KeyEvent.VK_UP){
-					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R")){
+					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R") && endGame != 0){
 						
 						nextCaseX = (p.getTileX());
 						nextCaseY = (p.getTileY() - 1);
@@ -140,6 +148,11 @@ public class Panneau extends JPanel implements ActionListener{
 							diamondTaked ++;
 						}
 						
+						if(m.getMap(nextCaseX, nextCaseY).equals("R")) {
+							
+						}
+						
+						
 						p.move(0, -1);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
@@ -147,7 +160,7 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				else if(keycode == KeyEvent.VK_DOWN){
-					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R")){
+					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R") && endGame != 0){
 						
 						nextCaseX = (p.getTileX());
 						nextCaseY = (p.getTileY() + 1);
@@ -164,7 +177,7 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				else if(keycode == KeyEvent.VK_LEFT){
-					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() - 1, p.getTileY()).equals("R")){
+					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() - 1, p.getTileY()).equals("R") && endGame != 0){
 						
 						nextCaseX = (p.getTileX() - 1);
 						nextCaseY = (p.getTileY());
@@ -180,7 +193,7 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				else if(keycode == KeyEvent.VK_RIGHT){
-					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() + 1, p.getTileY()).equals("R")){
+					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && !m.getMap(p.getTileX() + 1, p.getTileY()).equals("R") && endGame != 0){
 						
 						nextCaseX = (p.getTileX() + 1);
 						nextCaseY = (p.getTileY());
