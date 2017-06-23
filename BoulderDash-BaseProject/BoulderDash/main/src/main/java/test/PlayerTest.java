@@ -15,7 +15,7 @@ public class PlayerTest {
 	
 	/**
 	 * we instantiate a new player
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	
 	@Before

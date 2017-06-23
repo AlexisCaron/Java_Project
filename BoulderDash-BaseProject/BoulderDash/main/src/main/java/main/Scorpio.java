@@ -23,7 +23,7 @@ public class Scorpio {
 	}
 	/**
 	 * Setter Move
-	 * @param move 
+	 * @param move move
 	 */
 	public static void setMove(int move) {
 		MovementScorpio = move;
@@ -74,7 +74,10 @@ public Scorpio(){
 		return caseY;
 	}
 	/**
+	 *
 	 * The movement of the Scorpio on the map
+	 * @param xx the movement of the scorpio on the map
+	 * @param yy the movement of the scorpio on the map
 	 */
 public void move(int xx, int yy){
 		

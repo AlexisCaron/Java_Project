@@ -22,7 +22,7 @@ private static int MovementButterfly;
 	}
 	/**
 	 * Setter Move
-	 * @param move 
+	 * @param move  the movement 
 	 */
 	public static void setMove(int move){
 		MovementButterfly = (move);	
@@ -74,7 +74,10 @@ public Butterfly(){
 		return caseE;
 	}
 	/**
+	 * 
 	 * The movement of the butterfly on the map
+	 * @param aa the movement of the butterfly on the map
+	 * @param ee the movement of the butterfly on the map
 	 */
 public void move(int aa, int ee){
 	

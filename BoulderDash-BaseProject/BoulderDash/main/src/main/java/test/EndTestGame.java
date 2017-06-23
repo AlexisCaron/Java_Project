@@ -22,7 +22,7 @@ public class EndTestGame {
 	
 	/**
 	 * we set the diamond count to 0 before the test
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 
 	@Before

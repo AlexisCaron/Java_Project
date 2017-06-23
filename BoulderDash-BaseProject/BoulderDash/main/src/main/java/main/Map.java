@@ -117,8 +117,8 @@ public class Map {
 	}
 	/**
 	 * Method Static SetMap
-	 * @param x 
-	 * @param y 
+	 * @param x position on the map
+	 * @param y position on the map
 	 * @param sprite picture of element
 	 */
 	public static void setMap(int x, int y, String sprite) {

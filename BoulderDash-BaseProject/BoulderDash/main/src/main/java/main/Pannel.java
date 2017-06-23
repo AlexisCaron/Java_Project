@@ -42,7 +42,7 @@ public class Pannel extends JPanel implements ActionListener{
 
 	/**
 	 * Setter for the Diamonds Taked by the character
-	 * @param diamondTaked 
+	 * @param diamondTaked the diamondtaked
 	 */
 	public static void setDiamondTaked(int diamondTaked) {
 		Pannel.diamondTaked = diamondTaked;
@@ -59,7 +59,7 @@ public class Pannel extends JPanel implements ActionListener{
 
 	/**
 	 * Setter for the Diamonds Remaining on the map 
-	 * @param diamondRemaining 
+	 * @param diamondRemaining  the diamondRemaining
 	 */
 	public static void setDiamondRemaining(int diamondRemaining) {
 		Pannel.diamondRemaining = diamondRemaining;
