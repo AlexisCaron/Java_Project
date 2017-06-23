@@ -12,7 +12,7 @@ public class Main {
 	}
 		public Main(){
 		JFrame screen = new  JFrame("BoulderDash");
-		screen.add(new Panneau());
+		screen.add(new Pannel());
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		screen.setSize(1080, 1080);
 		screen.setLocationRelativeTo(null);

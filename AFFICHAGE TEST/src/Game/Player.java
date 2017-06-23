@@ -21,7 +21,7 @@ public class Player {
 	private Image player,playerup, playerdown, playerleft, playerright; 
 
 
-	private int tileX, tileY;
+	private int posPlayerX, posPlayerY;
 	
 	public Player(){
 		
@@ -44,8 +44,8 @@ public class Player {
 		
 		
 	
-		tileX = 1;
-		tileY = 1;
+		posPlayerX = 1;
+		posPlayerY = 1;
 		
 		
 	}
@@ -66,11 +66,11 @@ public class Player {
 	}
 	
 
-	public int getTileX(){
-		return tileX;
+	public int getPosPlayerX(){
+		return posPlayerX;
 	}
-	public int getTileY(){
-		return tileY;
+	public int getPosPlayerY(){
+		return posPlayerY;
 	}
 	
 	
@@ -78,8 +78,8 @@ public class Player {
 	
 	public void move(int dx, int dy){
 		
-		tileX += dx;
-		tileY += dy;
+		posPlayerX += dx;
+		posPlayerY += dy;
 		setMove(1);
 	}
 }

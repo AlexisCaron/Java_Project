@@ -46,24 +46,24 @@ public void move(int aa, int ee){
 }
 	
 public void IA(){
-	if(Map.getMap(caseA-1,caseE).equals("T") && Panneau.endGame != 0 && Panneau.die != 0){
+	if(Map.getMap(caseA-1,caseE).equals("T") && Pannel.endGame != 0 && Pannel.die != 0){
 		move(-1,0);
 		
 	}
 
 
 
-	else if(Map.getMap(caseA,caseE-1).equals("T") && Panneau.endGame != 0 && Panneau.die != 0){
+	else if(Map.getMap(caseA,caseE-1).equals("T") && Pannel.endGame != 0 && Pannel.die != 0){
 		move(0,-1);
 		
 	}
 
-	else if(Map.getMap(caseA,caseE+1).equals("T") && Panneau.endGame != 0 && Panneau.die != 0){
+	else if(Map.getMap(caseA,caseE+1).equals("T") && Pannel.endGame != 0 && Pannel.die != 0){
 		move(0,1);
 		
 	}
 
-	else if(Map.getMap(caseA+1,caseE).equals("T") && Panneau.endGame != 0 && Panneau.die != 0){
+	else if(Map.getMap(caseA+1,caseE).equals("T") && Pannel.endGame != 0 && Pannel.die != 0){
 		move(1,0);
 		
 	}

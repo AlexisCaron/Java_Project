@@ -7,12 +7,17 @@ import javax.swing.*;
 
 
 
-public class Panneau extends JPanel implements ActionListener{
+public class Pannel extends JPanel implements ActionListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Timer timer;
 	
 	private Map m;
 	private Player p;
-	private Scorpio a;
+	private Scorpio s;
 	private Butterfly b;
 	
 	static int diamondRemaining = 7;
@@ -28,7 +33,7 @@ public class Panneau extends JPanel implements ActionListener{
 
 
 	public static void setDiamondTaked(int diamondTaked) {
-		Panneau.diamondTaked = diamondTaked;
+		Pannel.diamondTaked = diamondTaked;
 	}
 
 
@@ -40,7 +45,7 @@ public class Panneau extends JPanel implements ActionListener{
 
 
 	public static void setDiamondRemaining(int diamondRemaining) {
-		Panneau.diamondRemaining = diamondRemaining;
+		Pannel.diamondRemaining = diamondRemaining;
 	}
 
 	String diamondMessage = "Diamonds Remaining :";
@@ -54,14 +59,14 @@ public class Panneau extends JPanel implements ActionListener{
 	int nextCaseX;
 	int nextCaseY;
 	
-	public Panneau(){
+	public Pannel(){
 			
 		m = new Map();
 		p = new Player();
-		a = new Scorpio();
+		s = new Scorpio();
 		b = new Butterfly();
 		
-		addKeyListener(new Al());
+		addKeyListener(new Action());
 		setFocusable(true);
 		
 			timer = new Timer(100, this);
@@ -116,15 +121,15 @@ public class Panneau extends JPanel implements ActionListener{
 
 					if(Player.getMove() == 1){
 						
-						previousCaseX = p.getTileX();
-						previousCaseY = p.getTileY();
+						previousCaseX = p.getPosPlayerX();
+						previousCaseY = p.getPosPlayerY();
 						
 						Map.setMap(previousCaseX,previousCaseY,"T");
 						
 						Player.setMove(0);
 
 				}
-					if(Map.getMap(p.getTileX(), p.getTileY()).equals("R") || Map.getMap(p.getTileX(), p.getTileY()).equals("D")) {
+					if(Map.getMap(p.getPosPlayerX(), p.getPosPlayerY()).equals("R") || Map.getMap(p.getPosPlayerX(), p.getPosPlayerY()).equals("D")) {
 						
 						die = 0;
 					}
@@ -154,100 +159,96 @@ public class Panneau extends JPanel implements ActionListener{
 				g.drawString(looseMessage, 330,  450);
 			}
 			
-			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
+			g.drawImage(p.getPlayer(), p.getPosPlayerX() * 32, p.getPosPlayerY() * 32,32,32, null);
 		
-			g.drawImage(a.getMonster(), a.getCaseX() * 32, a.getCaseY() * 32,32,32, null);
+			g.drawImage(s.getMonster(), s.getCaseX() * 32, s.getCaseY() * 32,32,32, null);
 			g.drawImage(b.getButterfly(), b.getCaseA() * 32, b.getCaseE() * 32,32,32, null);
-			a.IA();
+			s.IA();
 			b.IA();
 			
 		}
 		
-		public class Al extends KeyAdapter{
+		public class Action extends KeyAdapter{
 			public void keyPressed(KeyEvent e){
 				int keycode = e.getKeyCode();
 				
 				if(keycode == KeyEvent.VK_UP){
-					if(!Map.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !Map.getMap(p.getTileX(), p.getTileY() - 1).equals("R") && endGame != 0 && die != 0){
+					if(!Map.getMap(p.getPosPlayerX(), p.getPosPlayerY() - 1).equals("C") && !Map.getMap(p.getPosPlayerX(), p.getPosPlayerY() - 1).equals("R") && endGame != 0 && die != 0){
 						
-						if(Map.getMap((p.getTileX()), (p.getTileY() - 1)).equals("D")) {
+						if(Map.getMap((p.getPosPlayerX()), (p.getPosPlayerY() - 1)).equals("D")) {
 							diamondTaked ++;
 						}
 						
 						
 						p.move(0, -1);
-						previousCaseX = p.getTileX();
-						previousCaseY = p.getTileY();
+						previousCaseX = p.getPosPlayerX();
+						previousCaseY = p.getPosPlayerY();
 						p.p=1;
 					}
 				}
 				else if(keycode == KeyEvent.VK_DOWN){
-					if(!Map.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !Map.getMap(p.getTileX(), p.getTileY() + 1).equals("R") && endGame != 0 && die != 0){
+					if(!Map.getMap(p.getPosPlayerX(), p.getPosPlayerY() + 1).equals("C") && !Map.getMap(p.getPosPlayerX(), p.getPosPlayerY() + 1).equals("R") && endGame != 0 && die != 0){
+
 						
-						repaint();
 						
-						
-						if(Map.getMap((p.getTileX()), (p.getTileY() + 1)).equals("D")) {
+						if(Map.getMap((p.getPosPlayerX()), (p.getPosPlayerY() + 1)).equals("D")) {
 							diamondTaked ++;
 						}
 						
 						p.move(0, 1);
-						previousCaseX = p.getTileX();
-						previousCaseY = p.getTileY();
+						previousCaseX = p.getPosPlayerX();
+						previousCaseY = p.getPosPlayerY();
 						p.p=2;
 					}
 				}
 				else if(keycode == KeyEvent.VK_LEFT){
-					if(!Map.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && endGame != 0 && die != 0){
+					if(!Map.getMap(p.getPosPlayerX() - 1, p.getPosPlayerY()).equals("C") && endGame != 0 && die != 0){
 						
-						nextCaseX = (p.getTileX() - 2);
-						nextCaseY = (p.getTileY());
+						nextCaseX = (p.getPosPlayerX() - 2);
+						nextCaseY = (p.getPosPlayerY());
+
 						
-						repaint();
-						
-						if(Map.getMap((p.getTileX() - 1), (p.getTileY())).equals("D")) {
+						if(Map.getMap((p.getPosPlayerX() - 1), (p.getPosPlayerY())).equals("D")) {
 							diamondTaked ++;
 						}
 						
-						if(Map.getMap((p.getTileX() - 1), (p.getTileY())).equals("R")) {
+						if(Map.getMap((p.getPosPlayerX() - 1), (p.getPosPlayerY())).equals("R")) {
 							if(Map.getMap(nextCaseX, nextCaseY).equals("T")) {
 							
-								Map.setMap((p.getTileX() - 1), (p.getTileY()), "T");
-								Map.setMap((p.getTileX() - 2), (p.getTileY()), "R");
+								Map.setMap((p.getPosPlayerX() - 1), (p.getPosPlayerY()), "T");
+								Map.setMap((p.getPosPlayerX() - 2), (p.getPosPlayerY()), "R");
 						}
 										
 						}
-						if(!Map.getMap(p.getTileX() - 1, p.getTileY()).equals("R")){
+						if(!Map.getMap(p.getPosPlayerX() - 1, p.getPosPlayerY()).equals("R")){
 						p.move(-1, 0);
-						previousCaseX = p.getTileX();
-						previousCaseY = p.getTileY();
+						previousCaseX = p.getPosPlayerX();
+						previousCaseY = p.getPosPlayerY();
 						p.p=3;
 						}
 					}
 				}
 				else if(keycode == KeyEvent.VK_RIGHT){
-					if(!Map.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && endGame != 0 && die != 0){
+					if(!Map.getMap(p.getPosPlayerX() + 1, p.getPosPlayerY()).equals("C") && endGame != 0 && die != 0){
 						
-						nextCaseX = (p.getTileX() + 2);
-						nextCaseY = (p.getTileY());
-						
-						repaint();
-						
-						if(Map.getMap((p.getTileX() + 1), (p.getTileY())).equals("D")) {
+						nextCaseX = (p.getPosPlayerX() + 2);
+						nextCaseY = (p.getPosPlayerY());
+
+						if(Map.getMap((p.getPosPlayerX() + 1), (p.getPosPlayerY())).equals("D")) {
 							diamondTaked ++;
 						}
 						
-						if(Map.getMap((p.getTileX() + 1), (p.getTileY())).equals("R")) {
+						if(Map.getMap((p.getPosPlayerX() + 1), (p.getPosPlayerY())).equals("R")) {
 							if(Map.getMap(nextCaseX, nextCaseY).equals("T")) {
 							
-								Map.setMap((p.getTileX() + 1), (p.getTileY()), "T");
-								Map.setMap((p.getTileX() + 2), (p.getTileY()), "R");
+								Map.setMap((p.getPosPlayerX() + 1), (p.getPosPlayerY()), "T");
+								Map.setMap((p.getPosPlayerX() + 2), (p.getPosPlayerY()), "R");
 						}}
 						
-						if(!Map.getMap(p.getTileX() + 1, p.getTileY()).equals("R")){
+						if(!Map.getMap(p.getPosPlayerX() + 1, p.getPosPlayerY()).equals("R")){
 						p.move(1, 0);
-						previousCaseX = p.getTileX();
-						previousCaseY = p.getTileY();
+						previousCaseX = p.getPosPlayerX();
+						previousCaseY = p.getPosPlayerY();
 						p.p=4;
 						}
 
