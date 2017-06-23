@@ -69,7 +69,7 @@ public class Map {
 	public void openFile(){
 		
 		try{
-		scan = new Scanner(new File("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//mapd.txt"));
+		scan = new Scanner(new File("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//map2ok.txt"));
 		}catch(Exception e){
 			System.out.println("error loading map");
 		}
