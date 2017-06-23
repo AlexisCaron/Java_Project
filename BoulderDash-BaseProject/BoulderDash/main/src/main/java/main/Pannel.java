@@ -50,7 +50,7 @@ public class Pannel extends JPanel implements ActionListener{
 
 	/**
 	 * Method for the Diamonds Remaining on the map 
-	 * @return diamondRemaining number of diamond 
+	 * @return diamondRemaining number of Diamond 
 	 */
 	public static int getDiamondRemaining() {
 		return diamondRemaining;
