@@ -24,7 +24,7 @@ public class Pannel extends JPanel implements ActionListener{
 	static int diamondTaked = 0;
 	static int diamondCount;
 	static int endGame = 1;
-	static int die = 1;
+	public static int die = 1;
 	
 	public static int getDiamondTaked() {
 		return diamondTaked;
