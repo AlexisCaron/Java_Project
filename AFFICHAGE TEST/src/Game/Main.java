@@ -11,13 +11,13 @@ public class Main {
 		
 	}
 		public Main(){
-		JFrame fenetre = new  JFrame("Jeu");
-		fenetre.add(new Panneau());
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.setSize(1080, 1080);
-		fenetre.setLocationRelativeTo(null);
-		fenetre.setResizable(false);
-		fenetre.setVisible(true);
+		JFrame screen = new  JFrame("BoulderDash");
+		screen.add(new Panneau());
+		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		screen.setSize(1080, 1080);
+		screen.setLocationRelativeTo(null);
+		screen.setResizable(false);
+		screen.setVisible(true);
 	}
 
 }

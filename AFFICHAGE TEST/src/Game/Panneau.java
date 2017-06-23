@@ -2,7 +2,6 @@ package Game;
 import java.awt.*;
 
 import java.awt.event.*;
-import java.util.Arrays;
 
 import javax.swing.*;
 
@@ -13,6 +12,8 @@ public class Panneau extends JPanel implements ActionListener{
 	
 	private Map m;
 	private Player p;
+	private Scorpio a;
+	private Butterfly b;
 	
 	static int diamondRemaining = 7;
 	static int diamondTaked = 0;
@@ -57,17 +58,20 @@ public class Panneau extends JPanel implements ActionListener{
 			
 		m = new Map();
 		p = new Player();
+		a = new Scorpio();
+		b = new Butterfly();
+		
 		addKeyListener(new Al());
 		setFocusable(true);
 		
-			timer = new Timer(15, this);
+			timer = new Timer(100, this);
 			timer.start();
 		}
 	
 
 	
 	 public void actionPerformed(ActionEvent e){
-		
+		repaint();
 	}
 
 		
@@ -78,27 +82,30 @@ public class Panneau extends JPanel implements ActionListener{
 			for(int x = 0; x < 30; x++){		
 				for(int y = 0; y < 30; y++){
 					
-					if(m.getMap(x, y).equals("S")){
-						g.drawImage(m.getTerre(), x * 32, y * 32,32,32, null);
+					if(Map.getMap(x, y).equals("S")){
+						g.drawImage(m.getSand(), x * 32, y * 32,32,32, null);
 					}
-					if(m.getMap(x, y).equals("C")){
-						g.drawImage(m.getMur(), x * 32, y * 32,32,32, null);
+					if(Map.getMap(x, y).equals("C")){
+						g.drawImage(m.getWall(), x * 32, y * 32,32,32, null);
 					}
-					if(m.getMap(x, y).equals("D")){
+					if(Map.getMap(x, y).equals("D")){
 						g.drawImage(m.getDiam(), x * 32, y * 32,32,32, null);
-						if(m.getMap(x, y+1).equals("T")){
+						if(Map.getMap(x, y+1).equals("T")){
+
+	
 							Map.setMap(x, y+1, "D");
 							Map.setMap(x, y, "T");}
 					}
-					if(m.getMap(x, y).equals("R")){
-						g.drawImage(m.getBol(), x * 32, y * 32,32,32, null);
+					if(Map.getMap(x, y).equals("R")){
+						g.drawImage(m.getRock(), x * 32, y * 32,32,32, null);
 						
-						if(m.getMap(x, y+1).equals("T")){
+						if(Map.getMap(x, y+1).equals("T")){
+
 							Map.setMap(x, y+1, "R");
 							Map.setMap(x, y, "T");
 						}
 					}
-					if(m.getMap(x, y).equals("T")){
+					if(Map.getMap(x, y).equals("T")){
 						g.drawImage(m.getDirt(), x * 32, y * 32,32,32, null);
 						
 					}
@@ -117,7 +124,10 @@ public class Panneau extends JPanel implements ActionListener{
 						Player.setMove(0);
 
 				}
-				
+					if(Map.getMap(p.getTileX(), p.getTileY()).equals("R") || Map.getMap(p.getTileX(), p.getTileY()).equals("D")) {
+						
+						die = 0;
+					}
 			
 			}
 			g.setFont(new Font("Calibri", Font.BOLD, 25));
@@ -138,9 +148,19 @@ public class Panneau extends JPanel implements ActionListener{
 				endGame = 0;
 			}
 			
+			if(die == 0){
+				g.setFont(new Font("Calibri", Font.BOLD, 50));
+				g.setColor(Color.WHITE);
+				g.drawString(looseMessage, 330,  450);
+			}
+			
 			g.drawImage(p.getPlayer(), p.getTileX() * 32, p.getTileY() * 32,32,32, null);
 		
-
+			g.drawImage(a.getMonster(), a.getCaseX() * 32, a.getCaseY() * 32,32,32, null);
+			g.drawImage(b.getButterfly(), b.getCaseA() * 32, b.getCaseE() * 32,32,32, null);
+			a.IA();
+			b.IA();
+			
 		}
 		
 		public class Al extends KeyAdapter{
@@ -148,11 +168,9 @@ public class Panneau extends JPanel implements ActionListener{
 				int keycode = e.getKeyCode();
 				
 				if(keycode == KeyEvent.VK_UP){
-					if(!m.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() - 1).equals("R") && endGame != 0){
+					if(!Map.getMap(p.getTileX(), p.getTileY() - 1).equals("C") && !Map.getMap(p.getTileX(), p.getTileY() - 1).equals("R") && endGame != 0 && die != 0){
 						
-						repaint();
-						
-						if(m.getMap((p.getTileX()), (p.getTileY() - 1)).equals("D")) {
+						if(Map.getMap((p.getTileX()), (p.getTileY() - 1)).equals("D")) {
 							diamondTaked ++;
 						}
 						
@@ -164,12 +182,12 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				else if(keycode == KeyEvent.VK_DOWN){
-					if(!m.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !m.getMap(p.getTileX(), p.getTileY() + 1).equals("R") && endGame != 0){
+					if(!Map.getMap(p.getTileX(), p.getTileY() + 1).equals("C") && !Map.getMap(p.getTileX(), p.getTileY() + 1).equals("R") && endGame != 0 && die != 0){
 						
 						repaint();
 						
 						
-						if(m.getMap((p.getTileX()), (p.getTileY() + 1)).equals("D")) {
+						if(Map.getMap((p.getTileX()), (p.getTileY() + 1)).equals("D")) {
 							diamondTaked ++;
 						}
 						
@@ -180,26 +198,26 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				else if(keycode == KeyEvent.VK_LEFT){
-					if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && endGame != 0){
+					if(!Map.getMap(p.getTileX() - 1, p.getTileY()).equals("C") && endGame != 0 && die != 0){
 						
 						nextCaseX = (p.getTileX() - 2);
 						nextCaseY = (p.getTileY());
 						
 						repaint();
 						
-						if(m.getMap((p.getTileX() - 1), (p.getTileY())).equals("D")) {
+						if(Map.getMap((p.getTileX() - 1), (p.getTileY())).equals("D")) {
 							diamondTaked ++;
 						}
 						
-						if(m.getMap((p.getTileX() - 1), (p.getTileY())).equals("R")) {
-							if(m.getMap(nextCaseX, nextCaseY).equals("T")) {
+						if(Map.getMap((p.getTileX() - 1), (p.getTileY())).equals("R")) {
+							if(Map.getMap(nextCaseX, nextCaseY).equals("T")) {
 							
 								Map.setMap((p.getTileX() - 1), (p.getTileY()), "T");
 								Map.setMap((p.getTileX() - 2), (p.getTileY()), "R");
 						}
 										
 						}
-						if(!m.getMap(p.getTileX() - 1, p.getTileY()).equals("R")){
+						if(!Map.getMap(p.getTileX() - 1, p.getTileY()).equals("R")){
 						p.move(-1, 0);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
@@ -208,25 +226,25 @@ public class Panneau extends JPanel implements ActionListener{
 					}
 				}
 				else if(keycode == KeyEvent.VK_RIGHT){
-					if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && endGame != 0){
+					if(!Map.getMap(p.getTileX() + 1, p.getTileY()).equals("C") && endGame != 0 && die != 0){
 						
 						nextCaseX = (p.getTileX() + 2);
 						nextCaseY = (p.getTileY());
 						
 						repaint();
 						
-						if(m.getMap((p.getTileX() + 1), (p.getTileY())).equals("D")) {
+						if(Map.getMap((p.getTileX() + 1), (p.getTileY())).equals("D")) {
 							diamondTaked ++;
 						}
 						
-						if(m.getMap((p.getTileX() + 1), (p.getTileY())).equals("R")) {
-							if(m.getMap(nextCaseX, nextCaseY).equals("T")) {
+						if(Map.getMap((p.getTileX() + 1), (p.getTileY())).equals("R")) {
+							if(Map.getMap(nextCaseX, nextCaseY).equals("T")) {
 							
 								Map.setMap((p.getTileX() + 1), (p.getTileY()), "T");
 								Map.setMap((p.getTileX() + 2), (p.getTileY()), "R");
 						}}
 						
-						if(!m.getMap(p.getTileX() + 1, p.getTileY()).equals("R")){
+						if(!Map.getMap(p.getTileX() + 1, p.getTileY()).equals("R")){
 						p.move(1, 0);
 						previousCaseX = p.getTileX();
 						previousCaseY = p.getTileY();
@@ -234,17 +252,7 @@ public class Panneau extends JPanel implements ActionListener{
 						}
 
 					}
-				}	}
-
-					
-				
-				
-			
-			
-			
+				}
+			}	
 		}
-		
-		
-		
-		}
-
+}
