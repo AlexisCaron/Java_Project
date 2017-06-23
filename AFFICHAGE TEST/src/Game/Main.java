@@ -11,7 +11,7 @@ public class Main {
 		
 	}
 		public Main(){
-		JFrame fenetre = new  JFrame("Jeu");
+		JFrame fenetre = new  JFrame("BoulerDash");
 		fenetre.add(new Panneau());
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenetre.setSize(1080, 1080);

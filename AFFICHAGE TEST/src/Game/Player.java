@@ -26,19 +26,19 @@ public class Player {
 	public Player(){
 		
 		
-		ImageIcon img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Character.png");
+		ImageIcon img = new ImageIcon("D://Antho//CDM.png");
 		player = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerup.png");
+		img = new ImageIcon("D://Antho//playerup.png");
 		playerup = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerdown.png");
+		img = new ImageIcon("D://Antho//playerdown.png");
 		playerdown = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerleft.png");
+		img = new ImageIcon("D://Antho//playerleft.png");
 		playerleft = img.getImage();
 
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//playerright.png");
+		img = new ImageIcon("D://Antho//playerright.png");
 		playerright = img.getImage();
 	
 		

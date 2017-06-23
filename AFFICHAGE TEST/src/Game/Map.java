@@ -20,15 +20,15 @@ public class Map {
 	
 	public Map(){
 		
-		ImageIcon img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Sand.png");
+		ImageIcon img = new ImageIcon("D://Antho//Sand.png");
 		terre = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Wall.png");
+		img = new ImageIcon("D://Antho//Wall.png");
 		mur = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Diamond.png");
+		img = new ImageIcon("D://Antho//Diamond.png");
 		diamant = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Stone.png");
+		img = new ImageIcon("D://Antho//Stone.png");
 		bolder = img.getImage();
-		img = new ImageIcon("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//Dirt.png");
+		img = new ImageIcon("D://Antho//Dirt.png");
 		dirt = img.getImage();
 		
 		
@@ -58,7 +58,7 @@ public class Map {
 		return dirt;
 	}
 	
-	public String getMap(int x, int y){
+	public static String getMap(int x, int y){
 		String index = table[x][y];  
 		return index;
 	}
@@ -70,7 +70,7 @@ public class Map {
 	public void openFile(){
 		
 		try{
-		m = new Scanner(new File("C://Users//flori//Desktop//CESI eXia//Projet Java//Affichage//mapd.txt"));
+		m = new Scanner(new File("D://Antho//map5ok.txt"));
 		}catch(Exception e){
 			System.out.println("error loading map");
 		}
