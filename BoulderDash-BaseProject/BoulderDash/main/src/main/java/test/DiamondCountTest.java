@@ -15,6 +15,7 @@ public class DiamondCountTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
+	
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -28,11 +29,19 @@ public class DiamondCountTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * 	this test allows us to see if the getters and the setters of the diamonds taked by the character are functional	
+	 */
+	
 	@Test
 	public void testDiamond() {
 		Pannel.setDiamondTaked(2);
 		assertSame(2,Pannel.getDiamondTaked());
 	}
+	
+	/**
+	 *   this test allows us to see if the getters and the setters the diamonds remaining on the map are functional
+	 */
 	
 	@Test
 	public void testDiamondRemaining() {
