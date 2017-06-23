@@ -163,7 +163,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Level2`()
 SELECT MapPattern
 From map
-Where idMap = 2 ;;
+Where ID_Map = 2 ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -182,7 +182,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Level3`()
 SELECT MapPattern
 From map
-Where idMap = 3 ;;
+Where ID_Map = 3 ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -201,7 +201,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Level4`()
 SELECT MapPattern
 From map
-Where idMap = 4 ;;
+Where ID_Map = 4 ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -220,7 +220,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Level5`()
 SELECT MapPattern
 From map
-Where idMap = 5 ;;
+Where ID_Map = 5 ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -236,4 +236,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-23 15:42:36
+-- Dump completed on 2017-06-23 16:48:57
